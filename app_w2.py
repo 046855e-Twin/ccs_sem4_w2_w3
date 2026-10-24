@@ -7,14 +7,12 @@ def edit_image(image):
     if image is None:
         return None
 
-    result = image
+    result =  ImageOps.grayscale(image)
 
-    # STEP 2 — Mirror the edited image from left to right.
-    # result = TODO
+
+    result = ImageOps.mirror(result)
 
     return result
-
-
 # The Gradio interface and launch settings are already provided.
 demo = gr.Interface(
     fn=edit_image,
