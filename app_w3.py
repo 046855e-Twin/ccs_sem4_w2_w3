@@ -11,24 +11,24 @@ def edit_image(image, effect, angle, brightness, flip):
 
     # STEP 1 — Add the three effect branches.
     if effect == "Grayscale":
-        result = result
+        result = ImageOps.grayscale(result).convert("RGB")
     elif effect == "Blur":
-        result = result
+        result = result.filter(ImageFilter.GaussianBlur(radius=2)
     elif effect == "Sharpen":
-        result = result
+        result = result.filter(ImageFilter.SHARPEN)
 
     # STEP 2A — Rotate the image using angle and expand=True.
-    result = result
+    result = result.rotate(angle, expand=True)
 
     # The enhancer object is already provided.
     enhancer = ImageEnhance.Brightness(result)
 
     # STEP 2B — Use enhancer.enhance(...) with the brightness value.
-    result = result
+    result = result.enhance(brightness)
 
     # STEP 3 — Mirror the result only when flip is True.
     if flip:
-        result = result
+        result = ImageOps.mirror(result)
 
     return result
 
